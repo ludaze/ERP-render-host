@@ -134,12 +134,16 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Directory where collectstatic will gather files
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Additional directories to look for static files
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  # This assumes your static files are directly under the base directory
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
